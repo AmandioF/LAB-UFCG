@@ -30,15 +30,6 @@ public class ControllerApostaTest {
 	}
 	
 	@Test 
-	public void testValorTotalDeApostas() {
-		controle = new ControllerAposta();
-		controle.cadastraAposta(1, "Klebinho", 10, "VAI ACONTECER");
-		controle.cadastraAposta(1, "Zezinho", 26, "VAI ACONTECER");
-		controle.cadastraAposta(1, "Alandeghvdson", 100, "VAI ACONTECER");
-		assertEquals("Valor Errado", 136, controle.valorTotalDeApostas(1));
-	}
-	
-	@Test 
 	public void testTotalDeApostas() {
 		controle = new ControllerAposta();
 		controle.cadastraAposta(1, "Klebinho", 10, "VAI ACONTECER");
@@ -75,38 +66,15 @@ public class ControllerApostaTest {
 	}
 	
 	@Test 
-	public void testGetCaixaCenarioTrue() {
+	public void testExibeApostas4() {
 		controle = new ControllerAposta();
-		controle.cadastraAposta(1, "Klebinho", 10, "VAI ACONTECER");
+		controle.cadastrarApostaSeguraValor(1, "Klebinho", 10, "VAI ACONTECER", 15);
 		controle.cadastraAposta(1, "Zezinho", 26, "VAI ACONTECER");
 		controle.cadastraAposta(1, "Alandeghvdson", 100, "VAI ACONTECER");
-		assertEquals("String incorreta", 136 , controle.getCaixaCenario(1 , Previsao.VAI_ACONTECER));
+		assertEquals("String incorreta", "- Klebinho - R$ 0,10 - VAI ACONTECER - ASSEGURADA (VALOR) - R$15,00\n"
+									   + "- Zezinho - R$ 0,26 - VAI ACONTECER\n"
+									   + "- Alandeghvdson - R$ 1,00 - VAI ACONTECER\n", controle.exibeApostas(1));
 	}
 	
-	@Test 
-	public void testGetCaixaCenarioFalse() {
-		controle = new ControllerAposta();
-		controle.cadastraAposta(1, "Klebinho", 10, "N VAI ACONTECER");
-		controle.cadastraAposta(1, "Zezinho", 26, "N VAI ACONTECER");
-		controle.cadastraAposta(1, "Alandeghvdson", 100, "N VAI ACONTECER");
-		assertEquals("String incorreta", 136 , controle.getCaixaCenario(1 , Previsao.NAO_VAI_ACONTECER));
-	}
 	
-	@Test 
-	public void testGetCaixaCenarioVariadoFalse() {
-		controle = new ControllerAposta();
-		controle.cadastraAposta(1, "Klebinho", 10, "VAI ACONTECER");
-		controle.cadastraAposta(1, "Zezinho", 26, "N VAI ACONTECER");
-		controle.cadastraAposta(1, "Alandeghvdson", 100, "N VAI ACONTECER");
-		assertEquals("String incorreta", 126 , controle.getCaixaCenario(1 , Previsao.NAO_VAI_ACONTECER));
-	}
-	
-	@Test 
-	public void testGetCaixaCenarioVariadoTrue() {
-		controle = new ControllerAposta();
-		controle.cadastraAposta(1, "Klebinho", 10, "VAI ACONTECER");
-		controle.cadastraAposta(1, "Zezinho", 26, "N VAI ACONTECER");
-		controle.cadastraAposta(1, "Alandeghvdson", 100, "VAI ACONTECER");
-		assertEquals("String incorreta", 110 , controle.getCaixaCenario(1 , Previsao.VAI_ACONTECER));
-	}
 }

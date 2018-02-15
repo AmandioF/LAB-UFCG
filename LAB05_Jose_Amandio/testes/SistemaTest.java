@@ -432,7 +432,7 @@ public class SistemaTest {
 	@Test(expected=IllegalArgumentException.class)
 	public void testCadastraApostaApostaVazio() {
 		sistema = new Sistema(10, 0.1);
-		sistema.cadastrarCenario("O preÃ§o do aÃ§ucar vai diminuir");
+		sistema.cadastrarCenario("O preço do açucar vai diminuir");
 		sistema.cadastrarAposta(1, "Klebinho", 10, "        ");
 		
 	}
@@ -442,24 +442,24 @@ public class SistemaTest {
 	@Test
 	public void testCadastraCenario() {
 		sistema = new Sistema(10, 0.01);
-		assertEquals("Indice de cadastro incorreto",1 ,sistema.cadastrarCenario("O preÃ§o do aÃ§ucar vai diminuir"));
+		assertEquals("Indice de cadastro incorreto",1 ,sistema.cadastrarCenario("O preço do açucar vai diminuir"));
 		
 	}
 	
 	@Test
 	public void testExibirCenarios1() {
 		sistema = new Sistema(10, 0.01);
-		sistema.cadastrarCenario("O preÃ§o do aÃ§ucar vai diminuir");
-		assertEquals("String incorreta","1 - O preÃ§o do aÃ§ucar vai diminuir - Nao finalizado\n" ,sistema.exibirCenarios());
+		sistema.cadastrarCenario("O preço do açucar vai diminuir");
+		assertEquals("String incorreta","1 - O preço do açucar vai diminuir - Nao finalizado\n" ,sistema.exibirCenarios());
 		
 	}
 	
 	@Test
 	public void testExibirCenarios2() {
 		sistema = new Sistema(10, 0.01);
-		sistema.cadastrarCenario("O preÃ§o do aÃ§ucar vai diminuir");
+		sistema.cadastrarCenario("O preço do açucar vai diminuir");
 		sistema.cadastrarCenario("Amandio vai para o time de Oliveira e Pigmeu em 2018");
-		assertEquals("String incorreta","1 - O preÃ§o do aÃ§ucar vai diminuir - Nao finalizado\n"
+		assertEquals("String incorreta","1 - O preço do açucar vai diminuir - Nao finalizado\n"
 									  + "2 - Amandio vai para o time de Oliveira e Pigmeu em 2018 - Nao finalizado\n" ,sistema.exibirCenarios());
 		
 	}
@@ -467,20 +467,40 @@ public class SistemaTest {
 	@Test
 	public void testExibirCenarios3() {
 		sistema = new Sistema(10, 0.01);
-		sistema.cadastrarCenario("O preÃ§o do aÃ§ucar vai diminuir");
+		sistema.cadastrarCenario("O preço do açucar vai diminuir");
 		sistema.cadastrarCenario("Amandio vai para o time de Oliveira e Pigmeu em 2018");
 		sistema.cadastrarCenario("Amandio vai reprovar Calculo 2 e Discreta");
-		assertEquals("String incorreta","1 - O preÃ§o do aÃ§ucar vai diminuir - Nao finalizado\n"
+		assertEquals("String incorreta","1 - O preço do açucar vai diminuir - Nao finalizado\n"
 									  + "2 - Amandio vai para o time de Oliveira e Pigmeu em 2018 - Nao finalizado\n"
 									  + "3 - Amandio vai reprovar Calculo 2 e Discreta - Nao finalizado\n" ,sistema.exibirCenarios());
 		
 	}
 	
 	@Test
+	public void testExibirCenarios4() {
+		sistema = new Sistema(10, 0.01);
+		sistema.cadastrarCenario("O preço do açucar vai diminuir");
+		sistema.cadastrarCenario("Amandio vai para o time de Oliveira e Pigmeu em 2018");
+		sistema.cadastrarCenario("Amandio vai reprovar Calculo 2 e Discreta", 1500);
+		assertEquals("String incorreta","1 - O preço do açucar vai diminuir - Nao finalizado\n"
+									  + "2 - Amandio vai para o time de Oliveira e Pigmeu em 2018 - Nao finalizado\n"
+									  + "3 - Amandio vai reprovar Calculo 2 e Discreta - Nao finalizado - R$ 15,00\n" ,sistema.exibirCenarios());
+		
+	}
+	
+	@Test
 	public void testExibirCenario() {
 		sistema = new Sistema(10, 0.01);
-		sistema.cadastrarCenario("O preÃ§o do aÃ§ucar vai diminuir");
-		assertEquals("String incorreta","1 - O preÃ§o do aÃ§ucar vai diminuir - Nao finalizado" ,sistema.exibirCenario(1));
+		sistema.cadastrarCenario("O preço do açucar vai diminuir");
+		assertEquals("String incorreta","1 - O preço do açucar vai diminuir - Nao finalizado" ,sistema.exibirCenario(1));
+		
+	}
+	
+	@Test
+	public void testExibirCenarioBonus() {
+		sistema = new Sistema(10, 0.01);
+		sistema.cadastrarCenario("O preço do açucar vai diminuir", 10000);
+		assertEquals("String incorreta","1 - O preço do açucar vai diminuir - Nao finalizado - R$ 100,00" ,sistema.exibirCenario(1));
 		
 	}
 	
