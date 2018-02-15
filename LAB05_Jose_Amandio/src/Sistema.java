@@ -106,7 +106,6 @@ public class Sistema {
     */
 	public void cadastrarAposta(int cenario, String apostador, int valor, String previsao) {
 		this.validar("Erro no cadastro de aposta:", cenario);
-		
 		this.controleApostas.cadastraAposta(cenario, apostador, valor, previsao);
 		this.controleCenarios.upSoma(cenario, valor);
 	}
@@ -126,6 +125,11 @@ public class Sistema {
     */
 	public int cadastrarApostaSeguraValor(int cenario, String apostador, int valor, String previsao, int seguro, int custo) {
 		this.validar("Erro no cadastro de aposta assegurada por valor:", cenario);
+		if(custo < 0) {
+			throw new IllegalArgumentException("Custo invalido");
+		}if(seguro < 1) {
+			throw new IllegalArgumentException("Seguro invalido");
+		}
 		this.caixa += custo;
 		this.controleCenarios.upSoma(cenario, valor);
     	return this.controleApostas.cadastrarApostaSeguraValor(cenario, apostador, valor, previsao, seguro);
@@ -133,8 +137,8 @@ public class Sistema {
 	
 	
 	/**
-    * Cadastra uma aposta assegurada por valor.
-    * Toda Aposta assegurada por valor recebe um parametro de cenario, Apostador, valor, previsao, seguro e custo.
+    * Cadastra uma aposta assegurada por Taxa.
+    * Toda Aposta assegurada por Taxa recebe um parametro de cenario, Apostador, valor, previsao, seguro e custo.
     * 
     * @param cenario indice do cenario que foi feita a aposta
     * @param apostador pessoas que esta fazendo a aposta
@@ -148,6 +152,11 @@ public class Sistema {
     */
     public int cadastrarApostaSeguraTaxa(int cenario, String apostador, int valor, String previsao, double seguro, int custo) {
     	this.validar("Erro no cadastro de aposta assegurada por taxa:", cenario);
+    	if(custo < 0) {
+			throw new IllegalArgumentException("Custo invalido");
+		}if(seguro < 1) {
+			throw new IllegalArgumentException("Seguro invalido");
+		}
     	this.caixa += custo;
     	this.controleCenarios.upSoma(cenario, valor);
     	return this.controleApostas.cadastrarApostaSeguraTaxa(cenario, apostador, valor, previsao, seguro);
@@ -161,6 +170,11 @@ public class Sistema {
      * @param valor novo valor da aposta
      */
     public void alterarSeguroValor(int cenario, int apostaAssegurada, int valor) {
+    	this.validar("Erro na alteração de seguro por valor:", cenario);
+    	this.validar("Erro na alteração de seguro por valor:", apostaAssegurada);
+    	if(valor < 1) {
+			throw new IllegalArgumentException("valor invalido");
+		}
     	this.controleApostas.alterarSeguroValor(cenario, apostaAssegurada, valor);
     }
     
@@ -172,6 +186,11 @@ public class Sistema {
      * @param taxa nova taxa da aposta
      */
     public void alterarSeguroTaxa(int cenario, int apostaAssegurada, double taxa) {
+    	this.validar("Erro na alteração de seguro por taxa:", cenario);
+    	this.validar("Erro na alteração de seguro por taxa:", apostaAssegurada);
+    	if(taxa < 1) {
+			throw new IllegalArgumentException("valor invalido");
+		}
     	this.controleApostas.alterarSeguroTaxa(cenario, apostaAssegurada, taxa);
     }
     

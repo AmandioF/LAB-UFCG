@@ -164,7 +164,7 @@ public class ControllerAposta {
 	public String exibeApostas(int cenario) {
 		String lista = "";
 		for(int aposta = 0; aposta < this.apostas.get(cenario-1).size(); aposta++) {
-			lista += this.apostas.get(cenario-1).get(aposta).toString();
+			lista += this.apostas.get(cenario-1).get(aposta).toString() + "\n";
 		}
 		
 		return lista;

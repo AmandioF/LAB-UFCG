@@ -6,6 +6,20 @@ public class SistemaTest {
 	private Sistema sistema;
 
 	//Testes de Index
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testcadastrarCenarioBonusZero() {
+		sistema = new Sistema(10, 0.01);
+		sistema.cadastrarCenario("Eu vou", 0);
+		
+	}
+	
+	public void testcadastrarCenarioBonusNegativa() {
+		sistema = new Sistema(10, 0.01);
+		sistema.cadastrarCenario("Eu vou", -10);
+		
+	}
+	
 	@Test(expected=IndexOutOfBoundsException.class)
 	public void testExibirCenarioInexistentePositivo() {
 		sistema = new Sistema(10, 0.01);
@@ -109,6 +123,178 @@ public class SistemaTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
+	public void testCadastrarApostaSeguraValorCenarioInexistenteNegativo() {
+		sistema = new Sistema(10, 0.01);
+		sistema.cadastrarApostaSeguraValor(-1, "Klebinho", 10, "VAI ACONTECER", 10, 20);
+		
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testCadastrarApostaSeguraValorCenarioInexistentePositivo() {
+		sistema = new Sistema(10, 0.01);
+		sistema.cadastrarApostaSeguraValor(15, "Klebinho", 10, "VAI ACONTECER", 10, 20);
+		
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testCadastrarApostaSeguraValorCenarioInexistenteZero() {
+		sistema = new Sistema(10, 0.01);
+		sistema.cadastrarApostaSeguraValor(0, "Klebinho", 10, "VAI ACONTECER", 10, 20);
+		
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testCadastrarApostaSeguraValorValorNegativo() {
+		sistema = new Sistema(10, 0.01);
+		sistema.cadastrarApostaSeguraValor(1, "Klebinho", -10, "VAI ACONTECER", 10, 20);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testCadastrarApostaSeguraValorValorZero() {
+		sistema = new Sistema(10, 0.01);
+		sistema.cadastrarApostaSeguraValor(1, "Klebinho", 0, "VAI ACONTECER", 10, 20);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testCadastrarApostaSeguraValorSeguroZero() {
+		sistema = new Sistema(10, 0.01);
+		sistema.cadastrarApostaSeguraValor(1, "Klebinho", 10, "VAI ACONTECER", 0, 20);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testCadastrarApostaSeguraValorSeguroNegativo() {
+		sistema = new Sistema(10, 0.01);
+		sistema.cadastrarApostaSeguraValor(1, "Klebinho", 10, "VAI ACONTECER", -10, 20);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testCadastrarApostaSeguraValorCustoNegativo() {
+		sistema = new Sistema(10, 0.01);
+		sistema.cadastrarApostaSeguraValor(1, "Klebinho", 10, "VAI ACONTECER", 10, -20);
+	}
+	
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testCadastrarApostaSeguraTaxaCenarioInexistenteNegativo() {
+		sistema = new Sistema(10, 0.01);
+		sistema.cadastrarApostaSeguraTaxa(-1, "Klebinho", 10, "VAI ACONTECER", 10, 20);
+		
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testCadastrarApostaSeguraTaxaCenarioInexistentePositivo() {
+		sistema = new Sistema(10, 0.01);
+		sistema.cadastrarApostaSeguraTaxa(15, "Klebinho", 10, "VAI ACONTECER", 10, 20);
+		
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testCadastrarApostaSeguraTaxaCenarioInexistenteZero() {
+		sistema = new Sistema(10, 0.01);
+		sistema.cadastrarApostaSeguraTaxa(0, "Klebinho", 10, "VAI ACONTECER", 10, 20);
+		
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testCadastrarApostaSeguraTaxaValorNegativo() {
+		sistema = new Sistema(10, 0.01);
+		sistema.cadastrarApostaSeguraTaxa(1, "Klebinho", -10, "VAI ACONTECER", 10, 20);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testCadastrarApostaSeguraTaxaValorZero() {
+		sistema = new Sistema(10, 0.01);
+		sistema.cadastrarApostaSeguraTaxa(1, "Klebinho", 0, "VAI ACONTECER", 10, 20);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testCadastrarApostaSeguraTaxaSeguroZero() {
+		sistema = new Sistema(10, 0.01);
+		sistema.cadastrarApostaSeguraTaxa(1, "Klebinho", 10, "VAI ACONTECER", 0, 20);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testCadastrarApostaSeguraTaxaSeguroNegativo() {
+		sistema = new Sistema(10, 0.01);
+		sistema.cadastrarApostaSeguraTaxa(1, "Klebinho", 10, "VAI ACONTECER", -10, 20);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testCadastrarApostaSeguraTaxaCustoNegativo() {
+		sistema = new Sistema(10, 0.01);
+		sistema.cadastrarApostaSeguraTaxa(1, "Klebinho", 10, "VAI ACONTECER", 10, -20);
+	}
+	
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testAlterarSeguroTaxaCenarioNegativo() {
+		sistema = new Sistema(10, 0.01);
+		sistema.alterarSeguroTaxa(-1, 1, 20);
+	}
+	@Test(expected=IllegalArgumentException.class)
+	public void testAlterarSeguroTaxaCenarioZero() {
+		sistema = new Sistema(10, 0.01);
+		sistema.alterarSeguroTaxa(0, 1, 20);
+	}
+	@Test(expected=IllegalArgumentException.class)
+	public void testAlterarSeguroTaxaAsseguradaNegativa() {
+		sistema = new Sistema(10, 0.01);
+		sistema.alterarSeguroTaxa(1, -1, 20);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testAlterarSeguroTaxaAsseguradaZero() {
+		sistema = new Sistema(10, 0.01);
+		sistema.alterarSeguroTaxa(1, 0, 20);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testAlterarSeguroTaxaValorNegativa() {
+		sistema = new Sistema(10, 0.01);
+		sistema.alterarSeguroTaxa(1, -1, -20);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testAlterarSeguroTaxaValorZero() {
+		sistema = new Sistema(10, 0.01);
+		sistema.alterarSeguroTaxa(1, 1, 0);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testAlterarSeguroValorCenarioNegativo() {
+		sistema = new Sistema(10, 0.01);
+		sistema.alterarSeguroValor(-1, 1, 20);
+	}
+	@Test(expected=IllegalArgumentException.class)
+	public void testAlterarSeguroValorCenarioZero() {
+		sistema = new Sistema(10, 0.01);
+		sistema.alterarSeguroValor(0, 1, 20);
+	}
+	@Test(expected=IllegalArgumentException.class)
+	public void testAlterarSeguroValorAsseguradaNegativa() {
+		sistema = new Sistema(10, 0.01);
+		sistema.alterarSeguroValor(1, -1, 20);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testAlterarSeguroValorAsseguradaZero() {
+		sistema = new Sistema(10, 0.01);
+		sistema.alterarSeguroValor(1, 0, 20);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testAlterarSeguroValorValorNegativa() {
+		sistema = new Sistema(10, 0.01);
+		sistema.alterarSeguroValor(1, -1, -20);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testAlterarSeguroValorValorZero() {
+		sistema = new Sistema(10, 0.01);
+		sistema.alterarSeguroValor(1, 1, 0);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
 	public void testValorTotalDeApostasIndexNegativo() {
 		sistema = new Sistema(10, 0.01);
 		sistema.valorTotalDeApostas(-10);
@@ -170,6 +356,12 @@ public class SistemaTest {
 	}
 	
 	@Test(expected=NullPointerException.class)
+	public void testCadastrarCenarioBonusNull() {
+		sistema = new Sistema(10, 0.01);
+		sistema.cadastrarCenario(null, 10);
+	}
+	
+	@Test(expected=NullPointerException.class)
 	public void testCadastraApostaApostadorNulo() {
 		sistema = new Sistema(10,  0.01);
 		sistema.cadastrarCenario("O preÃ§o do aÃ§ucar vai diminuir");
@@ -185,11 +377,48 @@ public class SistemaTest {
 		
 	}
 	
+	@Test(expected=NullPointerException.class)
+	public void testCadastrarApostaSeguraValorNulo() {
+		sistema = new Sistema(10,  0.01);
+		sistema.cadastrarCenario("O preço do açucar vai diminuir");
+		sistema.cadastrarApostaSeguraValor(1, null, 10, "VAI ACONTECER", 10, 20);
+		
+	}
+	
+	@Test(expected=NullPointerException.class)
+	public void testCadastrarApostaSeguraValorApostaNula() {
+		sistema = new Sistema(10, 0.01);
+		sistema.cadastrarCenario("O preço do açucar vai diminuir");
+		sistema.cadastrarApostaSeguraValor(1, "Klebinho", 10, null, 10 , 20);
+		
+	}
+	
+	@Test(expected=NullPointerException.class)
+	public void testCadastrarApostaSeguraTaxaNulo() {
+		sistema = new Sistema(10,  0.01);
+		sistema.cadastrarCenario("O preço do açucar vai diminuir");
+		sistema.cadastrarApostaSeguraTaxa(1, null, 10, "VAI ACONTECER", 10, 20);
+		
+	}
+	
+	@Test(expected=NullPointerException.class)
+	public void testCadastrarApostaSeguraTaxaApostaNula() {
+		sistema = new Sistema(10, 0.01);
+		sistema.cadastrarCenario("O preço do açucar vai diminuir");
+		sistema.cadastrarApostaSeguraTaxa(1, "Klebinho", 10, null, 10 , 20);
+		
+	}
 	//Teste valor vazio
 	@Test(expected=IllegalArgumentException.class)
 	public void testCadastrarCenarioVazio() {
 		sistema = new Sistema(10, 0.01);
 		sistema.cadastrarCenario("      ");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testCadastrarCenarioBonusVazio() {
+		sistema = new Sistema(10, 0.01);
+		sistema.cadastrarCenario("      ", 10);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
@@ -258,14 +487,21 @@ public class SistemaTest {
 	@Test 
 	public void testCadastraAposta() {
 		sistema = new Sistema(10, 0.1);
-		sistema.cadastrarCenario("O preÃ§o do aÃ§ucar vai diminuir");
+		sistema.cadastrarCenario("O preço do açucar vai diminuir");
 		sistema.cadastrarAposta(1, "Klebinho", 10, "VAI ACONTECER");
+	}
+	
+	@Test 
+	public void testCadastrarApostaSeguraValor() {
+		sistema = new Sistema(10, 0.1);
+		sistema.cadastrarCenario("O preço do açucar vai diminuir");
+		sistema.cadastrarApostaSeguraValor(1, "Klebinho", 10, "VAI ACONTECER", 10, 20);
 	}
 	
 	@Test 
 	public void testValorTotalDeApostas() {
 		sistema = new Sistema(10, 0.1);
-		sistema.cadastrarCenario("O preÃ§o do aÃ§ucar vai diminuir");
+		sistema.cadastrarCenario("O preÃ§o do açucar vai diminuir");
 		sistema.cadastrarAposta(1, "Klebinho", 10, "VAI ACONTECER");
 		sistema.cadastrarAposta(1, "Zezinho", 26, "VAI ACONTECER");
 		sistema.cadastrarAposta(1, "Alandeghvdson", 100, "VAI ACONTECER");
@@ -275,7 +511,7 @@ public class SistemaTest {
 	@Test 
 	public void testTotalDeApostas() {
 		sistema = new Sistema(10, 0.1);
-		sistema.cadastrarCenario("O preÃ§o do aÃ§ucar vai diminuir");
+		sistema.cadastrarCenario("O preÃ§o do açucar vai diminuir");
 		sistema.cadastrarAposta(1, "Klebinho", 10, "VAI ACONTECER");
 		sistema.cadastrarAposta(1, "Zezinho", 26, "VAI ACONTECER");
 		sistema.cadastrarAposta(1, "Alandeghvdson", 100, "VAI ACONTECER");
@@ -285,7 +521,7 @@ public class SistemaTest {
 	@Test 
 	public void testExibeApostas1() {
 		sistema = new Sistema(10, 0.1);
-		sistema.cadastrarCenario("O preÃ§o do aÃ§ucar vai diminuir");
+		sistema.cadastrarCenario("O preço do açucar vai diminuir");
 		sistema.cadastrarAposta(1, "Klebinho", 10, "VAI ACONTECER");
 		assertEquals("String incorreta", "- Klebinho - R$ 0,10 - VAI ACONTECER\n", sistema.exibeApostas(1));
 	}
@@ -293,7 +529,7 @@ public class SistemaTest {
 	@Test 
 	public void testExibeApostas2() {
 		sistema = new Sistema(10, 0.1);
-		sistema.cadastrarCenario("O preÃ§o do aÃ§ucar vai diminuir");
+		sistema.cadastrarCenario("O preÃ§o do açucar vai diminuir");
 		sistema.cadastrarAposta(1, "Klebinho", 10, "VAI ACONTECER");
 		sistema.cadastrarAposta(1, "Alandeghvdson", 100, "VAI ACONTECER");
 		assertEquals("String incorreta", "- Klebinho - R$ 0,10 - VAI ACONTECER\n"
@@ -303,7 +539,7 @@ public class SistemaTest {
 	@Test 
 	public void testExibeApostas3() {
 		sistema = new Sistema(10, 0.1);
-		sistema.cadastrarCenario("O preÃ§o do aÃ§ucar vai diminuir");
+		sistema.cadastrarCenario("O preço do açucar vai diminuir");
 		sistema.cadastrarAposta(1, "Klebinho", 10, "VAI ACONTECER");
 		sistema.cadastrarAposta(1, "Zezinho", 26, "VAI ACONTECER");
 		sistema.cadastrarAposta(1, "Alandeghvdson", 100, "VAI ACONTECER");
