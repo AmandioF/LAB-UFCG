@@ -65,16 +65,5 @@ public class ControllerApostaTest {
 									   + "- Alandeghvdson - R$ 1,00 - VAI ACONTECER\n", controle.exibeApostas(1));
 	}
 	
-	@Test 
-	public void testExibeApostas4() {
-		controle = new ControllerAposta();
-		controle.cadastrarApostaSeguraValor(1, "Klebinho", 10, "VAI ACONTECER", 15);
-		controle.cadastraAposta(1, "Zezinho", 26, "VAI ACONTECER");
-		controle.cadastraAposta(1, "Alandeghvdson", 100, "VAI ACONTECER");
-		assertEquals("String incorreta", "- Klebinho - R$ 0,10 - VAI ACONTECER - ASSEGURADA (VALOR) - R$15,00\n"
-									   + "- Zezinho - R$ 0,26 - VAI ACONTECER\n"
-									   + "- Alandeghvdson - R$ 1,00 - VAI ACONTECER\n", controle.exibeApostas(1));
-	}
-	
 	
 }

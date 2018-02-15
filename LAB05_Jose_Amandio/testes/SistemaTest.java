@@ -225,41 +225,6 @@ public class SistemaTest {
 		sistema.cadastrarApostaSeguraTaxa(1, "Klebinho", 10, "VAI ACONTECER", 10, -20);
 	}
 	
-	
-	@Test(expected=IllegalArgumentException.class)
-	public void testAlterarSeguroTaxaCenarioNegativo() {
-		sistema = new Sistema(10, 0.01);
-		sistema.alterarSeguroTaxa(-1, 1, 20);
-	}
-	@Test(expected=IllegalArgumentException.class)
-	public void testAlterarSeguroTaxaCenarioZero() {
-		sistema = new Sistema(10, 0.01);
-		sistema.alterarSeguroTaxa(0, 1, 20);
-	}
-	@Test(expected=IllegalArgumentException.class)
-	public void testAlterarSeguroTaxaAsseguradaNegativa() {
-		sistema = new Sistema(10, 0.01);
-		sistema.alterarSeguroTaxa(1, -1, 20);
-	}
-	
-	@Test(expected=IllegalArgumentException.class)
-	public void testAlterarSeguroTaxaAsseguradaZero() {
-		sistema = new Sistema(10, 0.01);
-		sistema.alterarSeguroTaxa(1, 0, 20);
-	}
-	
-	@Test(expected=IllegalArgumentException.class)
-	public void testAlterarSeguroTaxaValorNegativa() {
-		sistema = new Sistema(10, 0.01);
-		sistema.alterarSeguroTaxa(1, -1, -20);
-	}
-	
-	@Test(expected=IllegalArgumentException.class)
-	public void testAlterarSeguroTaxaValorZero() {
-		sistema = new Sistema(10, 0.01);
-		sistema.alterarSeguroTaxa(1, 1, 0);
-	}
-	
 	@Test(expected=IllegalArgumentException.class)
 	public void testAlterarSeguroValorCenarioNegativo() {
 		sistema = new Sistema(10, 0.01);

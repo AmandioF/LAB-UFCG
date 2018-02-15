@@ -46,6 +46,8 @@ public class ControllerAposta {
     * @param previsao tipo de aposta feita pelo apostador
     * @param seguro valor assegurado em caso de derrota
     * 
+    * @return id da aposta assegurada
+    * 
     */
     public int cadastrarApostaSeguraValor(int cenario, String apostador, int valor, String previsao, int seguro) {
     	this.validar(cenario, apostador,  valor,  previsao,"Erro no cadastro de aposta assegurada por valor:" );
@@ -71,6 +73,7 @@ public class ControllerAposta {
      * @param previsao tipo de aposta feita pelo apostador
      * @param seguro valor assegurado em caso de derrota
      * 
+     * @return id da aposta assegurada
      */
     public int cadastrarApostaSeguraTaxa(int cenario, String apostador, int valor, String previsao, double seguro) {
     	this.validar(cenario, apostador,  valor,  previsao,"Erro no cadastro de aposta assegurada por taxa:" );
@@ -135,7 +138,7 @@ public class ControllerAposta {
      * 
      * @param cenario cenario em que a aposta assegurada esta localizada
      * @param apostaAssegurada id da aposta assegurada
-     * @param valor nova taxa da aposta
+     * @param taxa nova taxa da aposta
      */
     public void alterarSeguroTaxa(int cenario, int apostaAssegurada, double taxa) {
     	Tipo novo = new TipoTaxa(taxa, asseguradas.get(cenario-1).get(apostaAssegurada-1).getValor());
@@ -191,8 +194,8 @@ public class ControllerAposta {
 	/**
 	 * return todas a taxas e valores das apostas asseguradas que perderam
 	 * 
-	 * @param cenario
-	 * @param status
+	 * @param cenario cenario onde será pego o seguro
+	 * @param status status do cenario
 	 * 
 	 * @return a soma dos seguros das apostas que perderam
 	 */
