@@ -130,8 +130,9 @@ public class Sistema {
 		this.validar("Erro no cadastro de aposta assegurada por valor:", cenario);
 		this.caixa += custo;
 		this.controleCenarios.upSoma(cenario, valor);
+		int tam = this.controleApostas.cadastrarApostaSeguraValor(cenario, apostador, valor, previsao, seguro);
 		this.controleCenarios.upNumAposta(cenario);
-    	return this.controleApostas.cadastrarApostaSeguraValor(cenario, apostador, valor, previsao, seguro);
+    	return tam;
     }
 	
 	
@@ -153,8 +154,9 @@ public class Sistema {
     	this.validar("Erro no cadastro de aposta assegurada por taxa:", cenario);
     	this.caixa += custo;
     	this.controleCenarios.upSoma(cenario, valor);
+    	int tam = this.controleApostas.cadastrarApostaSeguraTaxa(cenario, apostador, valor, previsao, seguro);
     	this.controleCenarios.upNumAposta(cenario);
-    	return this.controleApostas.cadastrarApostaSeguraTaxa(cenario, apostador, valor, previsao, seguro);
+    	return tam;
     }
     
     /**

@@ -200,21 +200,29 @@ public class ControllerCenario {
 	
 	public String exibirCenarioOrdenado(int cenario) {
 		if(cenario > this.cenarios.size()) {
-			throw new IndexOutOfBoundsException("Erro na consulta de cenario: Cenario nao cadastrado");
+			throw new IndexOutOfBoundsException("Erro na consulta de cenario ordenado: Cenario nao cadastrado");
 		}
 		if(cenario < 1) {
-			throw new IndexOutOfBoundsException("Erro na consulta de cenario: Cenario invalido");
+			throw new IndexOutOfBoundsException("Erro na consulta de cenario ordenado: Cenario invalido");
 		}
-		return cenario + " - " + this.cenarios.get(cenario-1).toString();
+		return this.cenarios.get(cenario-1).getIndice()+1 + " - " + this.cenarios.get(cenario-1).toString();
 	}
 	
 	public void alterarOrdem(String ordem) {
-		if(ordem.equals("Cadastro")) {
-			Collections.sort(cenarios);
-		}else if(ordem.equals("Nome")) {
-			Collections.sort(cenarios, new NomeComparator());
-		}else {
-			Collections.sort(cenarios, new ApostaComparator());
+		if(ordem == null || ordem.trim().equals("")) {
+			throw new IllegalArgumentException("Erro ao alterar ordem: Ordem nao pode ser vazia ou nula");
 		}
+		if(ordem.equals("cadastro")) {
+			Collections.sort(cenarios);
+		}else if(ordem.equals("nome")) {
+			Collections.sort(cenarios, new NomeComparator());
+		}else if(ordem.equals("apostas")) {
+			Collections.sort(cenarios, new ApostaComparator());
+		}else {
+			throw new IllegalArgumentException("Erro ao alterar ordem: Ordem invalida");
+		}
+		
+		for(int i = 0; i < cenarios.size(); i++) System.out.println(this.cenarios.get(i).getIndice()+1 + " " + this.cenarios.get(i).getNumAposta());
+		System.out.println("--------------------------------");
 	}
 }

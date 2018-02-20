@@ -14,7 +14,8 @@ public class Facade {
 		
 		args = new String[] {"Facade", "Lab05_Jose_Amandio/acceptance_test/us1_test.txt","Lab05_Jose_Amandio/acceptance_test/us2_test.txt",
 							"Lab05_Jose_Amandio/acceptance_test/us3_test.txt", "Lab05_Jose_Amandio/acceptance_test/us4_test.txt", 
-							"Lab05_Jose_Amandio/acceptance_test/us5_test.txt","Lab05_Jose_Amandio/acceptance_test/us6_test.txt"};
+							"Lab05_Jose_Amandio/acceptance_test/us5_test.txt","Lab05_Jose_Amandio/acceptance_test/us6_test.txt",
+							"Lab05_Jose_Amandio/acceptance_test/us7_test.txt"};
 		EasyAccept.main(args);
 	}
 	

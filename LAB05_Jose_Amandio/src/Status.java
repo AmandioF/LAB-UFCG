@@ -5,8 +5,8 @@
 */
 public enum Status {
 	
-	FINALIZADO_OCORREU("Finalizado(ocorreu)"),
-	FINALIZADO_NAO_OCORREU("Finalizado(n ocorreu)"),
+	FINALIZADO_OCORREU("Finalizado (ocorreu)"),
+	FINALIZADO_NAO_OCORREU("Finalizado (n ocorreu)"),
 	NAO_FINALIZADO("Nao finalizado");
 
 	private String descricao;
