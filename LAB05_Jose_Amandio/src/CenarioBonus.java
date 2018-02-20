@@ -14,8 +14,8 @@ public class CenarioBonus extends Cenario{
     * @param bonus bonus a ser adicionado ao rateio do cenario
     * 
     */
-	public CenarioBonus(String descricao, int bonus) {
-		super(descricao);
+	public CenarioBonus(String descricao,int indice , int bonus) {
+		super(descricao, indice);
 		this.bonus = bonus;
 	}
 	

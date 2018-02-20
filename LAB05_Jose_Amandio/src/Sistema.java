@@ -1,3 +1,5 @@
+import java.util.Collections;
+
 /**
  * Representação de um Sistema
  * 
@@ -108,6 +110,7 @@ public class Sistema {
 		this.validar("Erro no cadastro de aposta:", cenario);
 		this.controleApostas.cadastraAposta(cenario, apostador, valor, previsao);
 		this.controleCenarios.upSoma(cenario, valor);
+		this.controleCenarios.upNumAposta(cenario);
 	}
 	
 	/**
@@ -127,6 +130,7 @@ public class Sistema {
 		this.validar("Erro no cadastro de aposta assegurada por valor:", cenario);
 		this.caixa += custo;
 		this.controleCenarios.upSoma(cenario, valor);
+		this.controleCenarios.upNumAposta(cenario);
     	return this.controleApostas.cadastrarApostaSeguraValor(cenario, apostador, valor, previsao, seguro);
     }
 	
@@ -149,6 +153,7 @@ public class Sistema {
     	this.validar("Erro no cadastro de aposta assegurada por taxa:", cenario);
     	this.caixa += custo;
     	this.controleCenarios.upSoma(cenario, valor);
+    	this.controleCenarios.upNumAposta(cenario);
     	return this.controleApostas.cadastrarApostaSeguraTaxa(cenario, apostador, valor, previsao, seguro);
     }
     
@@ -266,5 +271,12 @@ public class Sistema {
 		return rateio - this.getCaixaCenario(cenario);
 	}
 	
+	public String exibirCenarioOrdenado(int cenario) {
+		return this.controleCenarios.exibirCenarioOrdenado(cenario);
+	}
+	
+	public void alterarOrdem(String ordem) {
+		this.controleCenarios.alterarOrdem(ordem);
+	}
 	
 }

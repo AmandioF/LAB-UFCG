@@ -26,7 +26,7 @@ public class ControllerCenario {
 	 * @return numero do cenario
 	 */
 	public int cadastraCenario(String descricao) {
-		Cenario cenario = new Cenario(descricao);
+		Cenario cenario = new Cenario(descricao, this.cenarios.size());
 		this.cenarios.add(cenario);
 		return cenarios.size();
 	}
@@ -41,7 +41,7 @@ public class ControllerCenario {
 	 */
 	public int cadastraCenario(String descricao, int bonus) {
 		if(bonus < 1) throw new IllegalArgumentException("Erro no cadastro de cenario: Bonus invalido");
-		CenarioBonus cenario = new CenarioBonus(descricao, bonus);
+		CenarioBonus cenario = new CenarioBonus(descricao, this.cenarios.size(), bonus);
 		this.cenarios.add(cenario);
 		return cenarios.size();
 	}
@@ -75,7 +75,12 @@ public class ControllerCenario {
 		if(cenario < 1) {
 			throw new IndexOutOfBoundsException("Erro na consulta de cenario: Cenario invalido");
 		}
-		return cenario + " - " + this.cenarios.get(cenario-1).toString();
+		for(int i = 0; i < cenarios.size(); i++) {
+			if(cenarios.get(i).getIndice() == cenario-1) {
+				return cenario + " - " + this.cenarios.get(i).toString();
+			}
+		}
+		return "";
 	}
 	
 	/**
@@ -86,7 +91,12 @@ public class ControllerCenario {
 	 * @return valor total das apostas do cenario
 	 */
 	public int valorTotalDeApostas(int cenario) {
-		return this.cenarios.get(cenario-1).getSoma();
+		for(int i = 0; i < cenarios.size(); i++) {
+			if(cenarios.get(i).getIndice() == cenario-1) {
+				return this.cenarios.get(i).getSoma();
+			}
+		}
+		return 0;
 	}
 	
 	
@@ -100,7 +110,12 @@ public class ControllerCenario {
 	 * @return o Status do cenario
 	 */
 	public Status status(int cenario) {
-		return this.cenarios.get(cenario-1).getStatus();
+		for(int i = 0; i < cenarios.size(); i++) {
+			if(cenarios.get(i).getIndice() == cenario-1) {
+				return this.cenarios.get(i).getStatus();
+			}
+		}
+		return Status.NAO_FINALIZADO;
 	}
 	
 	/**
@@ -120,7 +135,11 @@ public class ControllerCenario {
 	 * @param ocorreu booleano que determinará se o cenario ocorreu ou não
 	 */
 	public void fechaAposta(int cenario, boolean ocorreu) {
-		this.cenarios.get(cenario-1).setStatus(ocorreu);
+		for(int i = 0; i < cenarios.size(); i++) {
+			if(cenarios.get(i).getIndice() == cenario-1) {
+				this.cenarios.get(i).setStatus(ocorreu);
+			}
+		}
 	}
 	
 	/**
@@ -130,7 +149,12 @@ public class ControllerCenario {
 	 * @param valor valor da nova aposta que ser� adicionado
 	 */
 	public void upSoma(int cenario, int valor) {
-		this.cenarios.get(cenario-1).upSoma(valor);
+		for(int i = 0; i < cenarios.size(); i++) {
+			if(cenarios.get(i).getIndice() == cenario-1) {
+				this.cenarios.get(i).upSoma(valor);
+				break;
+			}
+		}
 	}
 	
 	/**
@@ -141,7 +165,12 @@ public class ControllerCenario {
 	 * @return soma do seu caixa
 	 */
 	public int getCaixaCenario(int cenario) {
-		return this.cenarios.get(cenario-1).getSoma();
+		for(int i = 0; i < cenarios.size(); i++) {
+			if(cenarios.get(i).getIndice() == cenario-1) {
+				return this.cenarios.get(i).getSoma();
+			}
+		}
+		return 0;
 	}
 	
 	/**
@@ -152,7 +181,40 @@ public class ControllerCenario {
 	 * @return soma do valor destinado ao rateio 
 	 */
 	public int getRateioCenario(int cenario) {
-		return this.cenarios.get(cenario-1).getRateio();
+		for(int i = 0; i < cenarios.size(); i++) {
+			if(cenarios.get(i).getIndice() == cenario-1) {
+				return this.cenarios.get(i).getRateio();
+			}
+		}
+		return 0;
+	}
+
+	public void upNumAposta(int cenario) {
+		for(int i = 0; i < cenarios.size(); i++) {
+			if(cenarios.get(i).getIndice() == cenario-1) {
+				this.cenarios.get(i).upNumAposta();
+				break;
+			}
+		}
 	}
 	
+	public String exibirCenarioOrdenado(int cenario) {
+		if(cenario > this.cenarios.size()) {
+			throw new IndexOutOfBoundsException("Erro na consulta de cenario: Cenario nao cadastrado");
+		}
+		if(cenario < 1) {
+			throw new IndexOutOfBoundsException("Erro na consulta de cenario: Cenario invalido");
+		}
+		return cenario + " - " + this.cenarios.get(cenario-1).toString();
+	}
+	
+	public void alterarOrdem(String ordem) {
+		if(ordem.equals("Cadastro")) {
+			Collections.sort(cenarios);
+		}else if(ordem.equals("Nome")) {
+			Collections.sort(cenarios, new NomeComparator());
+		}else {
+			Collections.sort(cenarios, new ApostaComparator());
+		}
+	}
 }

@@ -5,8 +5,10 @@ import java.util.*;
 *
 * @author José Amandio Ferreira dos Santos
 */
-public class Cenario {
+public class Cenario implements Comparable<Cenario> {
 	private int soma;
+	private int numAposta;
+	private int indice;
 	
 	private String cenario;
 	private Status status;
@@ -19,7 +21,7 @@ public class Cenario {
     * @param descricao descrição do cenario
     * 
     */
-	public Cenario(String descricao) {
+	public Cenario(String descricao, int indice) {
 		 
 		if(descricao == null) {
 			throw new NullPointerException();
@@ -30,6 +32,8 @@ public class Cenario {
 		this.cenario = descricao;
 		this.status = Status.NAO_FINALIZADO;
 		this.soma = 0;
+		this.indice = indice;
+		this.numAposta = 0;
 	}
 	
 
@@ -61,7 +65,17 @@ public class Cenario {
 		return this.status;
 	}
 	
+	public int getNumAposta() {
+		return this.numAposta;
+	}
 	
+	public int getIndice() {
+		return this.indice;
+	}
+	
+	public String getCenario() {
+		return this.cenario;
+	}
 	/**
 	 * adiciona o valor de uma nova aposta cadastrada no cenario a soma
 	 * 
@@ -70,7 +84,6 @@ public class Cenario {
 	public void upSoma(int valor) {
 		this.soma += valor;
 	}
-	
 	
 	/**
 	 *  modifica o status do cenario
@@ -88,5 +101,24 @@ public class Cenario {
 	public String toString() {
 		return this.cenario + " - " + this.status.getDescricao();
 	}
+
+
+	public void upNumAposta() {
+		this.numAposta++;
+	}
+
+
+	@Override
+	public int compareTo(Cenario outraConta) {
+		if (this.indice < outraConta.indice) {
+            return -1;
+        }
+        if (this.indice > outraConta.indice) {
+            return 1;
+        }
+        return 0;
+	}
+	
+	
 
 }
