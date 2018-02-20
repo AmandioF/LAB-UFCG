@@ -221,8 +221,5 @@ public class ControllerCenario {
 		}else {
 			throw new IllegalArgumentException("Erro ao alterar ordem: Ordem invalida");
 		}
-		
-		for(int i = 0; i < cenarios.size(); i++) System.out.println(this.cenarios.get(i).getIndice()+1 + " " + this.cenarios.get(i).getNumAposta());
-		System.out.println("--------------------------------");
 	}
 }
