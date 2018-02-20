@@ -1,12 +1,22 @@
 /**
-* RepresentaÁ„o de um Tipo.
+* Representa√ß√£o de um Tipo.
 *
-* @author JosÈ Amandio Ferreira dos Santos
+* @author Jos√© Amandio Ferreira dos Santos
 */
-public abstract class Tipo {
-
+public interface Tipo {
+	
+	/**
+	 *  representa√ß√£o em string de um tipo de seguro
+	 *  
+	 * @return String do tipo de seguro
+	 */
 	public abstract String toString();
-
+	
+	/**
+	 * valor a ser retirado de cada tipo de seguro
+	 * 
+	 * @return daque de cada seguro
+	 */
 	public abstract int saque();
 
 }

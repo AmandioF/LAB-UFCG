@@ -3,19 +3,19 @@ import org.junit.runners.model.InitializationError;
 import easyaccept.EasyAccept;
 
 /**
-* Representação de uma fachada.
+* RepresentaÃ§Ã£o de uma fachada.
 *
-* @author José Amandio Ferreira dos Santos
+* @author JosÃ© Amandio Ferreira dos Santos
 */
 public class Facade {
 	private static Sistema sistema;
 	
 	public static void main(String [] args) {
 		
-		args = new String[] {"Facade", "Lab05_Jose_Amandio/acceptance_test/us1_test.txt","Lab05_Jose_Amandio/acceptance_test/us2_test.txt",
-							"Lab05_Jose_Amandio/acceptance_test/us3_test.txt", "Lab05_Jose_Amandio/acceptance_test/us4_test.txt", 
-							"Lab05_Jose_Amandio/acceptance_test/us5_test.txt","Lab05_Jose_Amandio/acceptance_test/us6_test.txt",
-							"Lab05_Jose_Amandio/acceptance_test/us7_test.txt"};
+		args = new String[] {"Facade", "LAB05_Jose_Amandio/acceptance_test/us1_test.txt","LAB05_Jose_Amandio/acceptance_test/us2_test.txt",
+							"LAB05_Jose_Amandio/acceptance_test/us3_test.txt", "LAB05_Jose_Amandio/acceptance_test/us4_test.txt", 
+							"LAB05_Jose_Amandio/acceptance_test/us5_test.txt","LAB05_Jose_Amandio/acceptance_test/us6_test.txt",
+							"LAB05_Jose_Amandio/acceptance_test/us7_test.txt"};
 		EasyAccept.main(args);
 	}
 	
@@ -45,9 +45,9 @@ public class Facade {
 	}
 	
 	/**
-	 * cadastra um cenario a partir da sua descriçãoo
+	 * cadastra um cenario a partir da sua descriï¿½ï¿½oo
 	 * 
-	 * @param descricao descrição para criação do cenario
+	 * @param descricao descriï¿½ï¿½o para criaï¿½ï¿½o do cenario
 	 * 
 	 * @return numero do cenario
 	 */
@@ -56,9 +56,9 @@ public class Facade {
 	}
 	
 	/**
-	 * cadastra um cenario bonus a partir da sua descrição e bonus
+	 * cadastra um cenario bonus a partir da sua descriï¿½ï¿½o e bonus
 	 * 
-	 * @param descricao descrição para criação do cenario bonus
+	 * @param descricao descriï¿½ï¿½o para criaï¿½ï¿½o do cenario bonus
 	 * @param bonus bonus presente no cenario
 	 * 
 	 * @return numero do cenario
@@ -81,7 +81,7 @@ public class Facade {
 	/**
 	 * exibe todos o cenarios cadastrados
 	 * 
-	 * @return representação em String com o toString dos cenarios cadastrados
+	 * @return representaï¿½ï¿½o em String com o toString dos cenarios cadastrados
 	 */
 	public String exibirCenarios() {
 		return this.sistema.exibirCenarios();
@@ -202,9 +202,9 @@ public class Facade {
 	}
 	
 	/**
-	 * Retorna o valor total de um cenário encerrado
+	 * Retorna o valor total de um cenï¿½rio encerrado
 	 * 
-	 * @param cenario cenario que terá seu valor exibido
+	 * @param cenario cenario que terï¿½ seu valor exibido
 	 * 
 	 * @return valor total de um valor encerrado
 	 */
@@ -223,10 +223,21 @@ public class Facade {
 		return this.sistema.getTotalRateioCenario(cenario);
 	}
 	
+	/**
+	 * retorna uma string com o toString de um cenario na ordem que foi ordenado
+	 * 
+	 * @param cenario indice do cenario
+	 * @return String do cenario
+	 */
 	public String exibirCenarioOrdenado(int cenario) {
 		return this.sistema.exibirCenarioOrdenado(cenario);
 	}
 	
+	/**
+	 * Altera a ordem da lista dos cenarios por nome, numero de apostas e indice
+	 *  
+	 * @param ordem String indicando qual a ordenaÃ§Ã£o atual da lista
+	 */
 	public void alterarOrdem(String ordem) {
 		this.sistema.alterarOrdem(ordem);
 	}

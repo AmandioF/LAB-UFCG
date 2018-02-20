@@ -1,9 +1,9 @@
 import java.util.*;
 
 /**
-* Representação de um cenário.
+* Representaï¿½ï¿½o de um cenï¿½rio.
 *
-* @author José Amandio Ferreira dos Santos
+* @author Josï¿½ Amandio Ferreira dos Santos
 */
 public class Cenario implements Comparable<Cenario> {
 	private int soma;
@@ -16,9 +16,9 @@ public class Cenario implements Comparable<Cenario> {
 	 
 	/**
     * Constroe um Cenario.
-    * Todo cenario recebe uma descrição.
+    * Todo cenario recebe uma descriï¿½ï¿½o.
     * 
-    * @param descricao descrição do cenario
+    * @param descricao descriï¿½ï¿½o do cenario
     * 
     */
 	public Cenario(String descricao, int indice) {
@@ -65,14 +65,29 @@ public class Cenario implements Comparable<Cenario> {
 		return this.status;
 	}
 	
+	/**
+	 * retorna o numero de aposta do cenario
+	 * 
+	 * @return numero de apostas
+	 */
 	public int getNumAposta() {
 		return this.numAposta;
 	}
 	
+	/**
+	 * retorna o indice do cenario
+	 * 
+	 * @return indice do cenario
+	 */
 	public int getIndice() {
 		return this.indice;
 	}
 	
+	/**
+	 * retorna a descriÃ§Ã£o do cenario
+	 * 
+	 * @return descriÃ§Ã£o do cenario
+	 */
 	public String getCenario() {
 		return this.cenario;
 	}
@@ -89,7 +104,7 @@ public class Cenario implements Comparable<Cenario> {
 	 *  modifica o status do cenario
 	 *  o cenario pode ser modifificado para "FINALIZADO(OCORREU)" ou "FINALIZADO(N OCORREU)" determinado pelo booleano
 	 *  
-	 * @param ocorreu determina se o cenario ocorreu ou não
+	 * @param ocorreu determina se o cenario ocorreu ou nï¿½o
 	 */
 	public void setStatus(boolean ocorreu) {
 		if(ocorreu) {
@@ -97,17 +112,24 @@ public class Cenario implements Comparable<Cenario> {
 		}else this.status = Status.FINALIZADO_NAO_OCORREU;
 	}
 	
+	/**
+	 * retorna a representaÃ§Ã£o em String de um cenario
+	 */
 	@Override
 	public String toString() {
 		return this.cenario + " - " + this.status.getDescricao();
 	}
 
-
+	/**
+	 * incrementa um no contador de numero de aposta
+	 */
 	public void upNumAposta() {
 		this.numAposta++;
 	}
 
-
+	/**
+	 * compara dois cenarios a partir do indice
+	 */
 	@Override
 	public int compareTo(Cenario outraConta) {
 		if (this.indice < outraConta.indice) {

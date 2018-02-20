@@ -1,9 +1,9 @@
 /**
-* Representação de um Tipo Taxa.
+* Representaï¿½ï¿½o de um Tipo Taxa.
 *
-* @author José Amandio Ferreira dos Santos
+* @author Josï¿½ Amandio Ferreira dos Santos
 */
-public class TipoTaxa extends Tipo{
+public class TipoTaxa implements Tipo{
 	private double taxa;
 	private double saque;
 	

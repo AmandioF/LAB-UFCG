@@ -1,9 +1,9 @@
 import java.util.*;
 
 /**
-* Representação de Controlado de Cenarios.
+* RepresentaÃ§Ã£o de Controlado de Cenarios.
 *
-* @author José Amandio Ferreira dos Santos
+* @author JosÃ© Amandio Ferreira dos Santos
 */
 public class ControllerCenario {
 	private List <Cenario> cenarios;
@@ -19,9 +19,9 @@ public class ControllerCenario {
 	}
 	
 	/**
-	 * cadastra um cenario a partir da sua descrição
+	 * cadastra um cenario a partir da sua descriï¿½ï¿½o
 	 * 
-	 * @param descricao descrição para criação do cenario
+	 * @param descricao descriï¿½ï¿½o para criaï¿½ï¿½o do cenario
 	 * 
 	 * @return numero do cenario
 	 */
@@ -32,9 +32,9 @@ public class ControllerCenario {
 	}
 	
 	/**
-	 * cadastra um cenario bonus a partir da sua descriçãoo e do seu bonus
+	 * cadastra um cenario bonus a partir da sua descriï¿½ï¿½oo e do seu bonus
 	 * 
-	 * @param descricao descrição para criação do cenario
+	 * @param descricao descriï¿½ï¿½o para criaï¿½ï¿½o do cenario
 	 * @param bonus bonus para em caso de vitoria
 	 * 
 	 * @return numero do cenario
@@ -50,7 +50,7 @@ public class ControllerCenario {
 	/**
 	 * exibe todos o cenarios cadastrados
 	 * 
-	 * @return representação em String com o toString dos cenarios cadastrados
+	 * @return representaï¿½ï¿½o em String com o toString dos cenarios cadastrados
 	 */
 	public String exibirCenarios() {
 		String lista = "";
@@ -146,7 +146,7 @@ public class ControllerCenario {
 	 * adiciona o valor de uma nova aposta de um determinado cenario
 	 * 
 	 * @param cenario cenario com a nova aposta
-	 * @param valor valor da nova aposta que será adicionado
+	 * @param valor valor da nova aposta que serï¿½ adicionado
 	 */
 	public void upSoma(int cenario, int valor) {
 		for(int i = 0; i < cenarios.size(); i++) {
@@ -160,7 +160,7 @@ public class ControllerCenario {
 	/**
 	 * retorna o caixa total do cenario
 	 * 
-	 * @param cenario cenario que será analisado
+	 * @param cenario cenario que serï¿½ analisado
 	 * 
 	 * @return soma do seu caixa
 	 */
@@ -176,7 +176,7 @@ public class ControllerCenario {
 	/**
 	 * retorna o valor a ser direcionado ao rateio do cenario
 	 * 
-	 * @param cenario cenario que será analisado
+	 * @param cenario cenario que serï¿½ analisado
 	 * 
 	 * @return soma do valor destinado ao rateio 
 	 */
@@ -198,6 +198,12 @@ public class ControllerCenario {
 		}
 	}
 	
+	/**
+	 * retorna uma string com o toString de um cenario na ordem que foi ordenado
+	 * 
+	 * @param cenario indice do cenario
+	 * @return String do cenario
+	 */
 	public String exibirCenarioOrdenado(int cenario) {
 		if(cenario > this.cenarios.size()) {
 			throw new IndexOutOfBoundsException("Erro na consulta de cenario ordenado: Cenario nao cadastrado");
@@ -208,6 +214,11 @@ public class ControllerCenario {
 		return this.cenarios.get(cenario-1).getIndice()+1 + " - " + this.cenarios.get(cenario-1).toString();
 	}
 	
+	/**
+	 * Altera a ordem da lista dos cenarios por nome, numero de apostas e indice
+	 *  
+	 * @param ordem String indicando qual a ordenaÃ§Ã£o atual da lista
+	 */
 	public void alterarOrdem(String ordem) {
 		if(ordem == null || ordem.trim().equals("")) {
 			throw new IllegalArgumentException("Erro ao alterar ordem: Ordem nao pode ser vazia ou nula");

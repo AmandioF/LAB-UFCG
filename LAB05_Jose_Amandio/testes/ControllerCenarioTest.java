@@ -6,21 +6,7 @@ public class ControllerCenarioTest {
 	private ControllerCenario controle;
 	
 	//Testes de Index
-	
-	@Test(expected=IndexOutOfBoundsException.class)
-	public void testStatusCenarioInexistentePositivo() {
-		controle = new ControllerCenario();
-		controle.status(1);
-		
-	}
-	
-	@Test(expected=IndexOutOfBoundsException.class)
-	public void testStatusCenarioInexistenteNegativo() {
-		controle = new ControllerCenario();
-		controle.cadastraCenario("Oliveira vai ganhar a SBC");
-		controle.status(-1);
-		
-	}
+
 	
 	@Test(expected=IndexOutOfBoundsException.class)
 	public void testExibirCenarioInexistentePositivo() {
@@ -37,35 +23,6 @@ public class ControllerCenarioTest {
 		
 	}
 	
-	@Test(expected=IndexOutOfBoundsException.class)
-	public void testFecharApostaInexistentePositivoVerdadeiro() {
-		controle = new ControllerCenario();
-		controle.fechaAposta(1, true);;
-		
-	}
-	
-	@Test(expected=IndexOutOfBoundsException.class)
-	public void testFecharApostaInexistenteNegativoVerdadeiro() {
-		controle = new ControllerCenario();
-		controle.cadastraCenario("Oliveira vai ganhar a SBC");
-		controle.fechaAposta(-1, true);;
-		
-	}
-	
-	@Test(expected=IndexOutOfBoundsException.class)
-	public void testFecharApostaInexistentePositivoFalso() {
-		controle = new ControllerCenario();
-		controle.fechaAposta(1, false);;
-		
-	}
-	
-	@Test(expected=IndexOutOfBoundsException.class)
-	public void testFecharApostaInexistenteNegativoFalso() {
-		controle = new ControllerCenario();
-		controle.cadastraCenario("Oliveira vai ganhar a SBC");
-		controle.fechaAposta(-1, false);;
-		
-	}
 	
 	//Testes com valor nulo
 	@Test(expected=NullPointerException.class)
@@ -80,6 +37,11 @@ public class ControllerCenarioTest {
 		controle.cadastraCenario(null, 125);
 	}
 	
+	@Test(expected=IllegalArgumentException.class)
+	public void testAlterarOrdemNull() {
+		controle = new ControllerCenario();
+		controle.alterarOrdem(null);
+	}
 	//Teste valor vazio
 	@Test(expected=IllegalArgumentException.class)
 	public void testCadastrarCenarioVazio() {
@@ -93,19 +55,25 @@ public class ControllerCenarioTest {
 		controle.cadastraCenario("      ", 48);
 	}
 	
+	@Test(expected=IllegalArgumentException.class)
+	public void testAlterarOrdemVazio() {
+		controle = new ControllerCenario();
+		controle.alterarOrdem("        ");
+	}
+	
 	//Testes de validade
 	
 	@Test
 	public void testCadastraCenario() {
 		controle = new ControllerCenario();
-		assertEquals("Indice de cadastro incorreto",1 ,controle.cadastraCenario("O preÃ§o do açucar vai diminuir"));
+		assertEquals("Indice de cadastro incorreto",1 ,controle.cadastraCenario("O preÃ§o do aï¿½ucar vai diminuir"));
 		
 	}
 	
 	@Test
 	public void testCadastraCenarioBonus() {
 		controle = new ControllerCenario();
-		assertEquals("Indice de cadastro incorreto",1 ,controle.cadastraCenario("O preço do açucar vai diminuir", 25));
+		assertEquals("Indice de cadastro incorreto",1 ,controle.cadastraCenario("O preï¿½o do aï¿½ucar vai diminuir", 25));
 		
 	}
 	
@@ -120,9 +88,9 @@ public class ControllerCenarioTest {
 	@Test
 	public void testExibirCenarios2() {
 		controle = new ControllerCenario();
-		controle.cadastraCenario("O preço do açucar vai diminuir");
+		controle.cadastraCenario("O preï¿½o do aï¿½ucar vai diminuir");
 		controle.cadastraCenario("Amandio vai para o time de Oliveira e Pigmeu em 2018");
-		assertEquals("String incorreta","1 - O preço do açucar vai diminuir - Nao finalizado\n"
+		assertEquals("String incorreta","1 - O preï¿½o do aï¿½ucar vai diminuir - Nao finalizado\n"
 									  + "2 - Amandio vai para o time de Oliveira e Pigmeu em 2018 - Nao finalizado\n" ,controle.exibirCenarios());
 		
 	}
@@ -130,10 +98,10 @@ public class ControllerCenarioTest {
 	@Test
 	public void testExibirCenarios3() {
 		controle = new ControllerCenario();
-		controle.cadastraCenario("O preço do açucar vai diminuir");
+		controle.cadastraCenario("O preï¿½o do aï¿½ucar vai diminuir");
 		controle.cadastraCenario("Amandio vai para o time de Oliveira e Pigmeu em 2018");
 		controle.cadastraCenario("Amandio vai reprovar Calculo 2 e Discreta");
-		assertEquals("String incorreta","1 - O preço do açucar vai diminuir - Nao finalizado\n"
+		assertEquals("String incorreta","1 - O preï¿½o do aï¿½ucar vai diminuir - Nao finalizado\n"
 									  + "2 - Amandio vai para o time de Oliveira e Pigmeu em 2018 - Nao finalizado\n"
 									  + "3 - Amandio vai reprovar Calculo 2 e Discreta - Nao finalizado\n" ,controle.exibirCenarios());
 		
@@ -142,10 +110,10 @@ public class ControllerCenarioTest {
 	@Test
 	public void testExibirCenarios4() {
 		controle = new ControllerCenario();
-		controle.cadastraCenario("O preço do açucar vai diminuir");
+		controle.cadastraCenario("O preï¿½o do aï¿½ucar vai diminuir");
 		controle.cadastraCenario("Amandio vai para o time de Oliveira e Pigmeu em 2018");
 		controle.cadastraCenario("Amandio vai reprovar Calculo 2 e Discreta", 1500);
-		assertEquals("String incorreta","1 - O preço do açucar vai diminuir - Nao finalizado\n"
+		assertEquals("String incorreta","1 - O preï¿½o do aï¿½ucar vai diminuir - Nao finalizado\n"
 									  + "2 - Amandio vai para o time de Oliveira e Pigmeu em 2018 - Nao finalizado\n"
 									  + "3 - Amandio vai reprovar Calculo 2 e Discreta - Nao finalizado - R$ 15,00\n" ,controle.exibirCenarios());
 		
@@ -153,16 +121,16 @@ public class ControllerCenarioTest {
 	@Test
 	public void testExibirCenario() {
 		controle = new ControllerCenario();
-		controle.cadastraCenario("O preço do açucar vai diminuir");
-		assertEquals("String incorreta","1 - O preço do açucar vai diminuir - Nao finalizado" ,controle.exibirCenario(1));
+		controle.cadastraCenario("O preï¿½o do aï¿½ucar vai diminuir");
+		assertEquals("String incorreta","1 - O preï¿½o do aï¿½ucar vai diminuir - Nao finalizado" ,controle.exibirCenario(1));
 		
 	}
 	
 	@Test
 	public void testExibirCenarioBonus() {
 		controle = new ControllerCenario();
-		controle.cadastraCenario("O preço do açucar vai diminuir", 10000);
-		assertEquals("String incorreta","1 - O preço do açucar vai diminuir - Nao finalizado - R$ 100,00" ,controle.exibirCenario(1));
+		controle.cadastraCenario("O preï¿½o do aï¿½ucar vai diminuir", 10000);
+		assertEquals("String incorreta","1 - O preï¿½o do aï¿½ucar vai diminuir - Nao finalizado - R$ 100,00" ,controle.exibirCenario(1));
 		
 	}
 	
@@ -170,7 +138,7 @@ public class ControllerCenarioTest {
 	public void testGetStatus() {
 		Status status = Status.NAO_FINALIZADO;
 		controle = new ControllerCenario();
-		controle.cadastraCenario("O preço do açucar vai diminuir");
+		controle.cadastraCenario("O preï¿½o do aï¿½ucar vai diminuir");
 		assertEquals("Status incorreto",status ,controle.status(1));
 		
 	}
@@ -179,7 +147,7 @@ public class ControllerCenarioTest {
 	public void testfechaApostaVerdadeira() {
 		Status status = Status.FINALIZADO_OCORREU;
 		controle = new ControllerCenario();
-		controle.cadastraCenario("O preço do açucar vai diminuir");
+		controle.cadastraCenario("O preï¿½o do aï¿½ucar vai diminuir");
 		controle.fechaAposta(1, true);
 		assertEquals("Status incorreto",status ,controle.status(1));
 		
@@ -190,7 +158,7 @@ public class ControllerCenarioTest {
 	public void testfachaApostaFalsa() {
 		Status status = Status.FINALIZADO_NAO_OCORREU;
 		controle = new ControllerCenario();
-		controle.cadastraCenario("O preço do açucar vai diminuir");
+		controle.cadastraCenario("O preï¿½o do aï¿½ucar vai diminuir");
 		controle.fechaAposta(1, false);
 		assertEquals("Status incorreto",status ,controle.status(1));
 		

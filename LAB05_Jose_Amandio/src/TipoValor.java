@@ -1,9 +1,9 @@
 /**
-* Representação de um Tipo Taxa.
+* Representaï¿½ï¿½o de um Tipo Taxa.
 *
-* @author José Amandio Ferreira dos Santos
+* @author Josï¿½ Amandio Ferreira dos Santos
 */
-public class TipoValor extends Tipo{
+public class TipoValor implements Tipo{
 	private int valor;
 	
 	/**

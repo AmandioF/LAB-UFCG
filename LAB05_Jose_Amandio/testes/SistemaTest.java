@@ -313,6 +313,26 @@ public class SistemaTest {
 		sistema.getCaixaCenario(0);
 	}
 	
+	@Test(expected=IndexOutOfBoundsException.class)
+	public void testexibirCenarioOrdenadoZero() {
+		sistema = new Sistema(10, 0.01);
+		sistema.exibirCenarioOrdenado(0);
+		
+	}
+	
+	@Test(expected=IndexOutOfBoundsException.class)
+	public void testexibirCenarioOrdenadoNegativa() {
+		sistema = new Sistema(10, 0.01);
+		sistema.exibirCenarioOrdenado(-10);
+		
+	}
+	
+	@Test(expected=IndexOutOfBoundsException.class)
+	public void testexibirCenarioOrdenadoPositivo() {
+		sistema = new Sistema(10, 0.01);
+		sistema.exibirCenarioOrdenado(1);
+		
+	}
 	//Testes com valor nulo
 	@Test(expected=NullPointerException.class)
 	public void testCadastrarCenarioNull() {
@@ -345,7 +365,7 @@ public class SistemaTest {
 	@Test(expected=NullPointerException.class)
 	public void testCadastrarApostaSeguraValorNulo() {
 		sistema = new Sistema(10,  0.01);
-		sistema.cadastrarCenario("O preço do açucar vai diminuir");
+		sistema.cadastrarCenario("O preï¿½o do aï¿½ucar vai diminuir");
 		sistema.cadastrarApostaSeguraValor(1, null, 10, "VAI ACONTECER", 10, 20);
 		
 	}
@@ -353,7 +373,7 @@ public class SistemaTest {
 	@Test(expected=NullPointerException.class)
 	public void testCadastrarApostaSeguraValorApostaNula() {
 		sistema = new Sistema(10, 0.01);
-		sistema.cadastrarCenario("O preço do açucar vai diminuir");
+		sistema.cadastrarCenario("O preï¿½o do aï¿½ucar vai diminuir");
 		sistema.cadastrarApostaSeguraValor(1, "Klebinho", 10, null, 10 , 20);
 		
 	}
@@ -361,7 +381,7 @@ public class SistemaTest {
 	@Test(expected=NullPointerException.class)
 	public void testCadastrarApostaSeguraTaxaNulo() {
 		sistema = new Sistema(10,  0.01);
-		sistema.cadastrarCenario("O preço do açucar vai diminuir");
+		sistema.cadastrarCenario("O preï¿½o do aï¿½ucar vai diminuir");
 		sistema.cadastrarApostaSeguraTaxa(1, null, 10, "VAI ACONTECER", 10, 20);
 		
 	}
@@ -369,10 +389,17 @@ public class SistemaTest {
 	@Test(expected=NullPointerException.class)
 	public void testCadastrarApostaSeguraTaxaApostaNula() {
 		sistema = new Sistema(10, 0.01);
-		sistema.cadastrarCenario("O preço do açucar vai diminuir");
+		sistema.cadastrarCenario("O preï¿½o do aï¿½ucar vai diminuir");
 		sistema.cadastrarApostaSeguraTaxa(1, "Klebinho", 10, null, 10 , 20);
 		
 	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testAlterarOrdemNull() {
+		sistema = new Sistema(10, 0.01);
+		sistema.alterarOrdem(null);
+	}
+	
 	//Teste valor vazio
 	@Test(expected=IllegalArgumentException.class)
 	public void testCadastrarCenarioVazio() {
@@ -397,34 +424,41 @@ public class SistemaTest {
 	@Test(expected=IllegalArgumentException.class)
 	public void testCadastraApostaApostaVazio() {
 		sistema = new Sistema(10, 0.1);
-		sistema.cadastrarCenario("O preço do açucar vai diminuir");
+		sistema.cadastrarCenario("O preï¿½o do aï¿½ucar vai diminuir");
 		sistema.cadastrarAposta(1, "Klebinho", 10, "        ");
 		
 	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testAlterarOrdemVazio() {
+		sistema = new Sistema(10, 0.1);
+		sistema.alterarOrdem("        ");
+	}
+	
 	
 	//Testes de validade
 	
 	@Test
 	public void testCadastraCenario() {
 		sistema = new Sistema(10, 0.01);
-		assertEquals("Indice de cadastro incorreto",1 ,sistema.cadastrarCenario("O preço do açucar vai diminuir"));
+		assertEquals("Indice de cadastro incorreto",1 ,sistema.cadastrarCenario("O preï¿½o do aï¿½ucar vai diminuir"));
 		
 	}
 	
 	@Test
 	public void testExibirCenarios1() {
 		sistema = new Sistema(10, 0.01);
-		sistema.cadastrarCenario("O preço do açucar vai diminuir");
-		assertEquals("String incorreta","1 - O preço do açucar vai diminuir - Nao finalizado\n" ,sistema.exibirCenarios());
+		sistema.cadastrarCenario("O preï¿½o do aï¿½ucar vai diminuir");
+		assertEquals("String incorreta","1 - O preï¿½o do aï¿½ucar vai diminuir - Nao finalizado\n" ,sistema.exibirCenarios());
 		
 	}
 	
 	@Test
 	public void testExibirCenarios2() {
 		sistema = new Sistema(10, 0.01);
-		sistema.cadastrarCenario("O preço do açucar vai diminuir");
+		sistema.cadastrarCenario("O preï¿½o do aï¿½ucar vai diminuir");
 		sistema.cadastrarCenario("Amandio vai para o time de Oliveira e Pigmeu em 2018");
-		assertEquals("String incorreta","1 - O preço do açucar vai diminuir - Nao finalizado\n"
+		assertEquals("String incorreta","1 - O preï¿½o do aï¿½ucar vai diminuir - Nao finalizado\n"
 									  + "2 - Amandio vai para o time de Oliveira e Pigmeu em 2018 - Nao finalizado\n" ,sistema.exibirCenarios());
 		
 	}
@@ -432,10 +466,10 @@ public class SistemaTest {
 	@Test
 	public void testExibirCenarios3() {
 		sistema = new Sistema(10, 0.01);
-		sistema.cadastrarCenario("O preço do açucar vai diminuir");
+		sistema.cadastrarCenario("O preï¿½o do aï¿½ucar vai diminuir");
 		sistema.cadastrarCenario("Amandio vai para o time de Oliveira e Pigmeu em 2018");
 		sistema.cadastrarCenario("Amandio vai reprovar Calculo 2 e Discreta");
-		assertEquals("String incorreta","1 - O preço do açucar vai diminuir - Nao finalizado\n"
+		assertEquals("String incorreta","1 - O preï¿½o do aï¿½ucar vai diminuir - Nao finalizado\n"
 									  + "2 - Amandio vai para o time de Oliveira e Pigmeu em 2018 - Nao finalizado\n"
 									  + "3 - Amandio vai reprovar Calculo 2 e Discreta - Nao finalizado\n" ,sistema.exibirCenarios());
 		
@@ -444,10 +478,10 @@ public class SistemaTest {
 	@Test
 	public void testExibirCenarios4() {
 		sistema = new Sistema(10, 0.01);
-		sistema.cadastrarCenario("O preço do açucar vai diminuir");
+		sistema.cadastrarCenario("O preï¿½o do aï¿½ucar vai diminuir");
 		sistema.cadastrarCenario("Amandio vai para o time de Oliveira e Pigmeu em 2018");
 		sistema.cadastrarCenario("Amandio vai reprovar Calculo 2 e Discreta", 1500);
-		assertEquals("String incorreta","1 - O preço do açucar vai diminuir - Nao finalizado\n"
+		assertEquals("String incorreta","1 - O preï¿½o do aï¿½ucar vai diminuir - Nao finalizado\n"
 									  + "2 - Amandio vai para o time de Oliveira e Pigmeu em 2018 - Nao finalizado\n"
 									  + "3 - Amandio vai reprovar Calculo 2 e Discreta - Nao finalizado - R$ 15,00\n" ,sistema.exibirCenarios());
 		
@@ -456,37 +490,37 @@ public class SistemaTest {
 	@Test
 	public void testExibirCenario() {
 		sistema = new Sistema(10, 0.01);
-		sistema.cadastrarCenario("O preço do açucar vai diminuir");
-		assertEquals("String incorreta","1 - O preço do açucar vai diminuir - Nao finalizado" ,sistema.exibirCenario(1));
+		sistema.cadastrarCenario("O preï¿½o do aï¿½ucar vai diminuir");
+		assertEquals("String incorreta","1 - O preï¿½o do aï¿½ucar vai diminuir - Nao finalizado" ,sistema.exibirCenario(1));
 		
 	}
 	
 	@Test
 	public void testExibirCenarioBonus() {
 		sistema = new Sistema(10, 0.01);
-		sistema.cadastrarCenario("O preço do açucar vai diminuir", 10000);
-		assertEquals("String incorreta","1 - O preço do açucar vai diminuir - Nao finalizado - R$ 100,00" ,sistema.exibirCenario(1));
+		sistema.cadastrarCenario("O preï¿½o do aï¿½ucar vai diminuir", 10000);
+		assertEquals("String incorreta","1 - O preï¿½o do aï¿½ucar vai diminuir - Nao finalizado - R$ 100,00" ,sistema.exibirCenario(1));
 		
 	}
 	
 	@Test 
 	public void testCadastraAposta() {
 		sistema = new Sistema(10, 0.1);
-		sistema.cadastrarCenario("O preço do açucar vai diminuir");
+		sistema.cadastrarCenario("O preï¿½o do aï¿½ucar vai diminuir");
 		sistema.cadastrarAposta(1, "Klebinho", 10, "VAI ACONTECER");
 	}
 	
 	@Test 
 	public void testCadastrarApostaSeguraValor() {
 		sistema = new Sistema(10, 0.1);
-		sistema.cadastrarCenario("O preço do açucar vai diminuir");
+		sistema.cadastrarCenario("O preï¿½o do aï¿½ucar vai diminuir");
 		sistema.cadastrarApostaSeguraValor(1, "Klebinho", 10, "VAI ACONTECER", 10, 20);
 	}
 	
 	@Test 
 	public void testValorTotalDeApostas() {
 		sistema = new Sistema(10, 0.1);
-		sistema.cadastrarCenario("O preÃ§o do açucar vai diminuir");
+		sistema.cadastrarCenario("O preÃ§o do aï¿½ucar vai diminuir");
 		sistema.cadastrarAposta(1, "Klebinho", 10, "VAI ACONTECER");
 		sistema.cadastrarAposta(1, "Zezinho", 26, "VAI ACONTECER");
 		sistema.cadastrarAposta(1, "Alandeghvdson", 100, "VAI ACONTECER");
@@ -496,7 +530,7 @@ public class SistemaTest {
 	@Test 
 	public void testTotalDeApostas() {
 		sistema = new Sistema(10, 0.1);
-		sistema.cadastrarCenario("O preÃ§o do açucar vai diminuir");
+		sistema.cadastrarCenario("O preÃ§o do aï¿½ucar vai diminuir");
 		sistema.cadastrarAposta(1, "Klebinho", 10, "VAI ACONTECER");
 		sistema.cadastrarAposta(1, "Zezinho", 26, "VAI ACONTECER");
 		sistema.cadastrarAposta(1, "Alandeghvdson", 100, "VAI ACONTECER");
@@ -506,7 +540,7 @@ public class SistemaTest {
 	@Test 
 	public void testExibeApostas1() {
 		sistema = new Sistema(10, 0.1);
-		sistema.cadastrarCenario("O preço do açucar vai diminuir");
+		sistema.cadastrarCenario("O preï¿½o do aï¿½ucar vai diminuir");
 		sistema.cadastrarAposta(1, "Klebinho", 10, "VAI ACONTECER");
 		assertEquals("String incorreta", "- Klebinho - R$ 0,10 - VAI ACONTECER\n", sistema.exibeApostas(1));
 	}
@@ -514,7 +548,7 @@ public class SistemaTest {
 	@Test 
 	public void testExibeApostas2() {
 		sistema = new Sistema(10, 0.1);
-		sistema.cadastrarCenario("O preÃ§o do açucar vai diminuir");
+		sistema.cadastrarCenario("O preÃ§o do aï¿½ucar vai diminuir");
 		sistema.cadastrarAposta(1, "Klebinho", 10, "VAI ACONTECER");
 		sistema.cadastrarAposta(1, "Alandeghvdson", 100, "VAI ACONTECER");
 		assertEquals("String incorreta", "- Klebinho - R$ 0,10 - VAI ACONTECER\n"
@@ -524,7 +558,7 @@ public class SistemaTest {
 	@Test 
 	public void testExibeApostas3() {
 		sistema = new Sistema(10, 0.1);
-		sistema.cadastrarCenario("O preço do açucar vai diminuir");
+		sistema.cadastrarCenario("O preï¿½o do aï¿½ucar vai diminuir");
 		sistema.cadastrarAposta(1, "Klebinho", 10, "VAI ACONTECER");
 		sistema.cadastrarAposta(1, "Zezinho", 26, "VAI ACONTECER");
 		sistema.cadastrarAposta(1, "Alandeghvdson", 100, "VAI ACONTECER");

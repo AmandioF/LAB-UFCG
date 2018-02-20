@@ -3,7 +3,7 @@ import java.util.Collections;
 /**
  * RepresentaÃ§Ã£o de um Sistema
  * 
- * @author José Amandio Ferreira dos Santos
+ * @author Josï¿½ Amandio Ferreira dos Santos
  *
  */
 public class Sistema {
@@ -29,8 +29,8 @@ public class Sistema {
 	}
 	
 	/**
-     * analisa os parametros, afim de dizer se estão aptos a serem usados por outros metodos
-     * caso não seja, ele retorna um erro ao sistema
+     * analisa os parametros, afim de dizer se estï¿½o aptos a serem usados por outros metodos
+     * caso nï¿½o seja, ele retorna um erro ao sistema
      * 
      * @param mensagem retornada no throw new exception
      * @param cenario indice do cenario q a aposta esta localizada
@@ -53,9 +53,9 @@ public class Sistema {
 	}
 	
 	/**
-	 * cadastra um cenario a partir da sua descrição
+	 * cadastra um cenario a partir da sua descriï¿½ï¿½o
 	 * 
-	 * @param descricao descrição para criação do cenario
+	 * @param descricao descriï¿½ï¿½o para criaï¿½ï¿½o do cenario
 	 * 
 	 * @return numero do cenario
 	 */
@@ -64,9 +64,9 @@ public class Sistema {
 	}
 	
 	/**
-	 * cadastra um cenario bonus a partir da sua descrição e bonus
+	 * cadastra um cenario bonus a partir da sua descriï¿½ï¿½o e bonus
 	 * 
-	 * @param descricao descrição para criação do cenario bonus
+	 * @param descricao descriï¿½ï¿½o para criaï¿½ï¿½o do cenario bonus
 	 * @param bonus bonus presente no cenario
 	 * 
 	 * @return numero do cenario
@@ -90,7 +90,7 @@ public class Sistema {
 	/**
 	 * exibe todos o cenarios cadastrados
 	 * 
-	 * @return representação em String com o toString dos cenarios cadastrados
+	 * @return representaï¿½ï¿½o em String com o toString dos cenarios cadastrados
 	 */
 	public String exibirCenarios() {
 		return this.controleCenarios.exibirCenarios();
@@ -167,8 +167,8 @@ public class Sistema {
      * @param valor novo valor da aposta
      */
     public void alterarSeguroValor(int cenario, int apostaAssegurada, int valor) {
-    	this.validar("Erro na alteração de seguro por valor:", cenario);
-    	this.validar("Erro na alteração de seguro por valor:", apostaAssegurada);
+    	this.validar("Erro na alteraï¿½ï¿½o de seguro por valor:", cenario);
+    	this.validar("Erro na alteraï¿½ï¿½o de seguro por valor:", apostaAssegurada);
     	if(valor < 1) {
 			throw new IllegalArgumentException("valor invalido");
 		}
@@ -212,9 +212,9 @@ public class Sistema {
 	}
 	
 	/**
-	 * retorna a representação em string com todas as apostas de um determinado cenario
+	 * retorna a representaï¿½ï¿½o em string com todas as apostas de um determinado cenario
 	 * 
-	 * @param cenario cenario que será pritando as apostas
+	 * @param cenario cenario que serï¿½ pritando as apostas
 	 * 
 	 * @return as apostas feitas no cenario
 	 */
@@ -228,7 +228,7 @@ public class Sistema {
 	 * 
 	 * @param cenario cenario a ser finalizado
 	 * 
-	 * @param ocorreu booleano que determinará se o cenario ocorreu ou nÃ£o
+	 * @param ocorreu booleano que determinarï¿½ se o cenario ocorreu ou nÃ£o
 	 */ 
 	public void fecharAposta(int cenario, boolean ocorreu) {
 		this.validar("Erro ao fechar aposta:", cenario);
@@ -241,9 +241,9 @@ public class Sistema {
 	}
 	
 	/**
-	 * Retorna o valor total de um cenário encerrado
+	 * Retorna o valor total de um cenï¿½rio encerrado
 	 * 
-	 * @param cenario canario que terá¡ seu valor exibido
+	 * @param cenario canario que terï¿½ seu valor exibido
 	 * 
 	 * @return valor total de um valor encerrado
 	 */
@@ -257,9 +257,9 @@ public class Sistema {
 	}
 	
 	/**
-	 * Retorna o valor total de um cenário encerrado que será destinado as apostas vencedoras
+	 * Retorna o valor total de um cenï¿½rio encerrado que serï¿½ destinado as apostas vencedoras
 	 * 
-	 * @param cenario cenario que terá o valor distribuido
+	 * @param cenario cenario que terï¿½ o valor distribuido
 	 * 
 	 * @return valor do valor a ser distribuido entre os vencedores
 	 */
@@ -273,10 +273,21 @@ public class Sistema {
 		return rateio - this.getCaixaCenario(cenario);
 	}
 	
+	/**
+	 * retorna uma string com o toString de um cenario na ordem que foi ordenado
+	 * 
+	 * @param cenario indice do cenario
+	 * @return String do cenario
+	 */
 	public String exibirCenarioOrdenado(int cenario) {
 		return this.controleCenarios.exibirCenarioOrdenado(cenario);
 	}
 	
+	/**
+	 * Altera a ordem da lista dos cenarios por nome, numero de apostas e indice
+	 *  
+	 * @param ordem String indicando qual a ordenaÃ§Ã£o atual da lista
+	 */
 	public void alterarOrdem(String ordem) {
 		this.controleCenarios.alterarOrdem(ordem);
 	}
